@@ -13,7 +13,7 @@ export_on_save:
 *[:fa-html5:]: Arquivo .html
 *[:fa-code:]: Arquivo .ipynb (notebook Jupyter)
 
-## Aulas 
+## Aulas
 
 *Cada tópico de aula possui um notebook Jupiter executável (.ipynb) contendo teoria e prática (em Python) relacionadas aos subtópicos listados. Versão HTML do notebook também está disponível para download.*
 
@@ -47,7 +47,7 @@ export_on_save:
 
 #### 5 - Avaliação de modelos [:fa-html5:](/conteudo/05/avaliacao_modelos.html) [:fa-code:](/conteudo/05/avaliacao_modelos.ipynb) 
 (arquivo Python auxiliar [:fa-download:](/conteudo/05/aux.py))
-* TREINAMENTO (e o ERRO de treinamento), VALIDAÇÃO (e o ERRO de validação), TESTE (e o ERRO do teste)
+* TREINAMENTO (e o ERRO), VALIDAÇÃO (e o ERRO), TESTE (e o ERRO)
 * Particionamento de datatsets para validação: *holdout* vs *k-fold*
 * Problemas na especialização dos modelos: *Overfitting* e *Underfitting*
 * Exemplo: Regressão Polinomial
