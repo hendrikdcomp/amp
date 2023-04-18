@@ -1,6 +1,6 @@
 {
-	"name":"Simbau",
-	"short_name":"Simbau",
+	"name":"MobilePet",
+	"short_name":"MobilePet",
 	"start_url":"index.html",
 	"display":"standalone",
 	"background_color":"#5900b3",
@@ -9,12 +9,12 @@
 	"description":"Exemplo de uso Tensorflow.js tipo PWA",
 	"icons":[
 	{
-        "src":"texto.png",					
+        "src":"pet.png",					
         "sizes":"160x160",
         "type":"image/png"
 	},
 	{
-        "src":"texto.png",
+        "src":"pet.png",
         "sizes":"160x160",
         "type":"image/png"
 	}

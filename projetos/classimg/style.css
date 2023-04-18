@@ -1,0 +1,54 @@
+body {
+    padding: 2% 5%;
+    font-family: avenir, arial, tahoma, monospace, sans-serif;
+}
+  
+* {
+    background: rgb(32, 32, 32);
+    color: whitesmoke;
+    font-family: avenir, arial, helvetica, sans-serif;
+    border-radius: 0.5rem;
+    transition: 0.25s;
+}
+  
+input, textarea {
+    padding: 0.5rem;
+    width: 100%;
+}
+  
+input:hover,textarea:hover,input:focus,textarea:focus {
+    background: lime;
+    color: black;
+}
+  
+a:hover,a:focus {
+    color: lime;
+}
+  
+a:focus {
+    text-decoration: underline;
+}
+
+.disabled:hover {
+    background: rgb(32, 32, 32);
+    color: whitesmoke;
+    cursor: not-allowed;
+}
+
+#spinner {
+    cursor: wait;
+}
+/*
+.textinput {
+    float: left;
+    width: 100%;
+    min-height: 75px;
+    outline: none;
+    resize: none;
+    border: 1px solid grey;
+}
+*/
+.responsive {
+    width: 100%;
+    height: auto;
+}

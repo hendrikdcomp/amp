@@ -1,0 +1,104 @@
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet"></script>
+
+    <!-- Folhas de estilo -->
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    
+    <!-- Responsivivdade -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="apple-mobile-web-app-status-bar" content="#aa7700">
+    <meta name="theme-color" content="black">
+
+  </head>
+  <body>
+
+    <h1>MobilePet v0.1 - Desafio da raça.</h1>
+    <h2>Observe a imagem do pet abaixo e escreva o nome de 3 raças que você acha que a IA iria classificar,
+         da mais provável para a menos provável.</h2>
+
+    <!-- Área para escrever seu resumo -->
+    <input
+      id="input"
+      type="text"
+      placeholder="Escreva três raças e pressione ENTER."
+      value=""
+    />
+    <p></p>
+    <i
+      id="spinner"
+      class="fa fa-spinner fa-spin"
+      style="visibility: hidden"
+    ></i>
+    <div id="output" style="visibility: hidden">
+      <h3><u>Resultados da IA</u><br/><span id="result"></span></h3>
+      <h3>E aí? Foi bem? Desafie seus amigos!</h3>
+    </div>
+    <p></p>
+
+    <div id="console"></div>
+    <!-- <img id="img" crossorigin src="https://i.imgur.com/JlUvsxa.jpg" width="227" height="227"/> -->
+    <!-- <img id="img" crossorigin src="https://cdn.pixabay.com/photo/2017/05/29/15/34/kitten-2354016_960_720.jpg" width="227" height="227"/> -->
+    <img id="img" crossorigin src="https://cdn.pixabay.com/photo/2010/12/13/10/20/beagle-puppy-2681_960_720.jpg" />
+    
+    <!-- Load index.js after the content of the page -->
+    <!-- <script src="index.js"> -->
+    <script>
+    // Captura evento ENTER
+    var myInput = document.getElementById("input");
+    myInput.addEventListener("keypress", function (event) {
+    if (event.key === "Enter") {
+        if (myInput.value.length == 0) {
+        alert("Escreva alguma coisa.");
+        return;
+        }
+        event.preventDefault();
+        classifyPetBreed();
+    }
+    });
+
+    
+    function classifyPetBreed() {
+        // Perfumaria
+        document.getElementById("spinner").style.visibility = "visible";
+        document.getElementById("input").setAttribute("disabled", true);
+        document.getElementById("input").classList.add("disabled");
+
+        // Trecho que carrega o modelo e executa a classificação
+        let net;
+        async function app() {
+            console.log('Loading mobilenet..');
+
+            // Carrega o modelo
+            net = await mobilenet.load();
+            console.log('Successfully loaded model');
+
+            // Realiza a classificação, joga na tela e também no console
+            const imgEl = document.getElementById('img');
+            const result = await net.classify(imgEl);
+            console.log(result);
+
+            let breed1 = `1. ${result[0].className} (${Math.round(result[0].probability*100)}%)`
+            let breed2 = `2. ${result[1].className} (${Math.round(result[1].probability*100)}%)`
+            let breed3 = `3. ${result[2].className} (${Math.round(result[2].probability*100)}%)`
+            let breed = `${breed1}\n${breed2}\n${breed3}`
+
+            document.getElementById("result").innerText = breed;
+
+            // Perfumaria
+            document.getElementById("output").style.visibility = "visible";
+            document.getElementById("spinner").style.visibility = "hidden";
+            document.getElementById("input").removeAttribute("disabled");
+            document.getElementById("input").classList.remove("disabled");
+        }
+
+        app();
+    }
+    </script>
+    
+  </body>
+</html>
