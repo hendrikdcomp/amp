@@ -84,7 +84,7 @@
         document.getElementById("spinner").style.visibility = "visible";
         document.getElementById("input").setAttribute("disabled", true);
         document.getElementById("input").classList.add("disabled");
-        const sentence1 = document.getElementById("resumo").innerHTML;
+        const sentence1 = document.getElementById("texto").innerHTML;
         const sentence2 = document.getElementById("input").value;
         useModel(sentence1, sentence2, showOutput);
       }
