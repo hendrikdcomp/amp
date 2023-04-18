@@ -43,11 +43,36 @@
     <div id="console"></div>
     <!-- <img id="img" crossorigin src="https://i.imgur.com/JlUvsxa.jpg" width="227" height="227"/> -->
     <!-- <img id="img" crossorigin src="https://cdn.pixabay.com/photo/2017/05/29/15/34/kitten-2354016_960_720.jpg" width="227" height="227"/> -->
-    <img id="img" crossorigin src="https://cdn.pixabay.com/photo/2010/12/13/10/20/beagle-puppy-2681_960_720.jpg" />
-    
+    <!-- <img id="img" crossorigin src="https://cdn.pixabay.com/photo/2010/12/13/10/20/beagle-puppy-2681_960_720.jpg" /> -->
+    <img id="img" crossorigin src="" />
     <!-- Load index.js after the content of the page -->
     <!-- <script src="index.js"> -->
     <script>
+
+    // Seleciona aleatoriamente uma imagem de uma lista de URLs
+    var imagens = ["https://cdn.pixabay.com/photo/2017/05/29/15/34/kitten-2354016_960_720.jpg", 
+    "https://cdn.pixabay.com/photo/2010/12/13/10/20/beagle-puppy-2681_960_720.jpg", 
+    "https://cdn.pixabay.com/photo/2019/02/06/15/18/puppy-3979350_960_720.jpg", 
+    "https://cdn.pixabay.com/photo/2020/10/07/18/40/dog-5635960_960_720.jpg", 
+    "https://cdn.pixabay.com/photo/2020/07/20/06/42/english-bulldog-5422018_960_720.jpg",
+    "https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_960_720.jpg",
+    "https://cdn.pixabay.com/photo/2015/11/16/22/14/cat-1046544_960_720.jpg",
+    "https://cdn.pixabay.com/photo/2017/03/07/15/17/cat-2124270_960_720.jpg",
+    "https://cdn.pixabay.com/photo/2016/02/11/00/35/feline-1192935_960_720.jpg",
+    "https://cdn.pixabay.com/photo/2017/03/28/16/30/cat-2182624_960_720.jpg",
+    "https://cdn.pixabay.com/photo/2015/07/07/13/09/cat-834392_960_720.jpg",
+    "https://cdn.pixabay.com/photo/2017/11/13/14/49/chihuahua-2945855_960_720.jpg",
+    "https://cdn.pixabay.com/photo/2016/02/08/20/24/dog-1187576_960_720.jpg",
+    "https://cdn.pixabay.com/photo/2016/05/15/16/35/dog-1393920_960_720.jpg",
+    "https://cdn.pixabay.com/photo/2015/05/13/08/07/dalmatians-765138_960_720.jpg",
+    "https://cdn.pixabay.com/photo/2016/11/23/13/16/african-wild-dog-1852795_960_720.jpg"
+    ];
+    // seleciona uma imagem aleatória
+    var imagemSelecionada = imagens[Math.floor(Math.random()*imagens.length)];
+    // exibe a imagem na tag <img>
+    img.src = imagemSelecionada;
+    document.body.appendChild(img);
+
     // Captura evento ENTER
     var myInput = document.getElementById("input");
     myInput.addEventListener("keypress", function (event) {
@@ -82,10 +107,14 @@
             const result = await net.classify(imgEl);
             console.log(result);
 
-            let breed1 = `1. ${result[0].className} (${Math.round(result[0].probability*100)}%)`
-            let breed2 = `2. ${result[1].className} (${Math.round(result[1].probability*100)}%)`
-            let breed3 = `3. ${result[2].className} (${Math.round(result[2].probability*100)}%)`
-            let breed = `${breed1}\n${breed2}\n${breed3}`
+            let temp = result.map((x,i) => `${i+1}. ${x.className} (${Math.round(x.probability*100)}%)`)
+
+            // let breed1 = `1. ${result[0].className} (${Math.round(result[0].probability*100)}%)`
+            // let breed2 = `2. ${result[1].className} (${Math.round(result[1].probability*100)}%)`
+            // let breed3 = `3. ${result[2].className} (${Math.round(result[2].probability*100)}%)`
+            // let breed = `${breed1}\n${breed2}\n${breed3}`
+
+            let breed = temp.reduce((acc,x)=>acc+x+'\n','')
 
             document.getElementById("result").innerText = breed;
 
