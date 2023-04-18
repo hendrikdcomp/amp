@@ -41,12 +41,8 @@
     <p></p>
 
     <div id="console"></div>
-    <!-- <img id="img" crossorigin src="https://i.imgur.com/JlUvsxa.jpg" width="227" height="227"/> -->
-    <!-- <img id="img" crossorigin src="https://cdn.pixabay.com/photo/2017/05/29/15/34/kitten-2354016_960_720.jpg" width="227" height="227"/> -->
-    <!-- <img id="img" crossorigin src="https://cdn.pixabay.com/photo/2010/12/13/10/20/beagle-puppy-2681_960_720.jpg" /> -->
     <img id="img" crossorigin src="" />
-    <!-- Load index.js after the content of the page -->
-    <!-- <script src="index.js"> -->
+    
     <script>
 
     // Seleciona aleatoriamente uma imagem de uma lista de URLs
@@ -108,11 +104,6 @@
             console.log(result);
 
             let temp = result.map((x,i) => `${i+1}. ${x.className} (${Math.round(x.probability*100)}%)`)
-
-            // let breed1 = `1. ${result[0].className} (${Math.round(result[0].probability*100)}%)`
-            // let breed2 = `2. ${result[1].className} (${Math.round(result[1].probability*100)}%)`
-            // let breed3 = `3. ${result[2].className} (${Math.round(result[2].probability*100)}%)`
-            // let breed = `${breed1}\n${breed2}\n${breed3}`
 
             let breed = temp.reduce((acc,x)=>acc+x+'\n','')
 
