@@ -1,0 +1,22 @@
+{
+	"name":"Similaridade de textos no Tensorflow.js",
+	"short_name":"Simbau",
+	"start_url":"index.html",
+	"display":"standalone",
+	"background_color":"#5900b3",
+	"theme_color":"black",
+	"scope": ".",
+	"description":"Exemplo de uso Tensorflow.js tipo PWA",
+	"icons":[
+	{
+        "src":"texto.png",					
+        "sizes":"160x160",
+        "type":"image/png"
+	},
+	{
+        "src":"texto.png",
+        "sizes":"160x160",
+        "type":"image/png"
+	}
+    ]
+}

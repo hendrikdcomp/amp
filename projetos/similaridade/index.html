@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<html lang="pt">
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/universal-sentence-encoder"></script>
+    <script src="tfjs-utils.js"></script>
+
+    <!-- Folhas de estilo -->
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    
+    <!-- Responsivivdade -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="apple-mobile-web-app-status-bar" content="#aa7700">
+    <meta name="theme-color" content="black">
+
+    <title>Simbau</title>
+    
+    <!-- Manifest.json -->
+    <link rel="manifest" href="manifest.json">
+  </head>
+
+  <body>
+    <h1>Simbau v0.1 - Desafio do resumo.</h1>
+    <h2>Leia o texto abaixo. Você consegue resumi-lo usando até 100 caracteres? Tente e veja o seu desempenho. 
+        A IA irá calcular o quão bom é seu resumo mostrando um valor de qualidade entre 0% e 100%.
+        Quanto maior esse valor, melhor. Desafie seus amigos!</h2>
+
+    <!-- Texto a ser resumido: será escolhido aleatoriamente do arquivo textos.json e incluido aqui -->
+    <p id="texto" style="color:lime">
+    </p><p></p>
+
+    <!-- Área para escrever seu resumo -->
+    <h2>Escreva seu resumo aqui com até 100 caracteres e pressione ENTER</h2>
+    <input
+      id="input"
+      type="text"
+      placeholder="Resumo."
+      maxlength = "100"
+      value=""
+    />
+
+    <!-- Output para exibir a similaridade -->
+    <p></p>
+    <i
+      id="spinner"
+      class="fa fa-spinner fa-spin"
+      style="visibility: hidden"
+    ></i>
+    <div id="output" style="visibility: hidden">
+      <h2>Similaridade = <span id="similarity"></span></h2>
+    </div>
+
+    <script>
+      // Script para selecionar aleatoriamente um dos resumos presentes no arquivo textos.json
+      fetch("textos.json")
+        .then(response => response.json())
+        .then(data => {
+          const randomItem = data[Math.floor(Math.random() * data.length)];
+          const myContentElement = document.getElementById("texto");
+          myContentElement.innerHTML = randomItem.content;
+        })
+        .catch(error => {
+          console.error("Error fetching JSON:", error);
+        });
+
+      // Captura evento ENTER
+      var myInput = document.getElementById("input");
+      myInput.addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+          if (myInput.value.length == 0) {
+            alert("Escreva alguma coisa.");
+            return;
+          }
+          event.preventDefault();
+          getSimilarityOfInput();
+        }
+      });
+
+      // Calcula similaridade. Função useModel está definida no arquivo tfjs-utils.js
+      function getSimilarityOfInput() {
+        document.getElementById("spinner").style.visibility = "visible";
+        document.getElementById("input").setAttribute("disabled", true);
+        document.getElementById("input").classList.add("disabled");
+        const sentence1 = document.getElementById("resumo").innerHTML;
+        const sentence2 = document.getElementById("input").value;
+        useModel(sentence1, sentence2, showOutput);
+      }
+
+      function showOutput(similarity) {
+        const percent = similarity * 100;
+        document.getElementById("similarity").innerText = get2Decimals(percent) + "%";
+        document.getElementById("output").style.visibility = "visible";
+        document.getElementById("spinner").style.visibility = "hidden";
+        document.getElementById("input").removeAttribute("disabled");
+        document.getElementById("input").classList.remove("disabled");
+      }
+
+      function get2Decimals(number) {
+        return Math.round(number * 100) / 100;
+      }
+    </script>
+
+    <!-- PWA -->
+    <script>
+        window.addEventListener('load', () => {
+            registerSW();
+        });
+
+        // Registro do Service Worker
+        async function registerSW() {
+            if ('serviceWorker' in navigator) {
+                try {
+                    await navigator
+                        .serviceWorker
+                        .register('serviceworker.js');
+                }
+                catch (e) {
+                    console.log('SW registration failed');
+                }
+            }
+        }
+    </script>
+
+  </body>
+</html>
