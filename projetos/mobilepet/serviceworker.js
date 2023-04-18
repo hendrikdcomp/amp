@@ -1,4 +1,4 @@
-var staticCacheName = "simbau";
+var staticCacheName = "mobilepet";
 
 self.addEventListener("install", function (e) {
 e.waitUntil(
