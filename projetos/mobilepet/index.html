@@ -42,7 +42,7 @@
 
     <div id="console"></div>
     <img id="img" crossorigin src="" />
-    
+
     <script>
 
     // Seleciona aleatoriamente uma imagem de uma lista de URLs
@@ -119,6 +119,27 @@
         app();
     }
     </script>
+
+    <!-- PWA -->
+    <script>
+      window.addEventListener('load', () => {
+          registerSW();
+      });
+
+      // Registro do Service Worker
+      async function registerSW() {
+          if ('serviceWorker' in navigator) {
+              try {
+                  await navigator
+                      .serviceWorker
+                      .register('serviceworker.js');
+              }
+              catch (e) {
+                  console.log('SW registration failed');
+              }
+          }
+      }
+  </script>
     
   </body>
 </html>
