@@ -13,7 +13,7 @@ export_on_save:
 *[:fa-html5:]: Arquivo .html
 *[:fa-code:]: Arquivo .ipynb (notebook Jupyter)
 
-## Aulas
+## Conteúdo
 
 *Cada tópico de aula possui um notebook Jupiter executável (.ipynb) contendo teoria e prática (em Python) relacionadas aos subtópicos listados. Versão HTML do notebook também está disponível para download.*
 
