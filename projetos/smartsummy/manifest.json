@@ -1,0 +1,22 @@
+{
+	"name":"SmartSummy",
+	"short_name":"SmartSummy",
+	"start_url":"index.html",
+	"display":"standalone",
+	"background_color":"#5900b3",
+	"theme_color":"black",
+	"scope": ".",
+	"description":"Gere um texto-resumo em PtBR do áudio de um vídeo em ING",
+	"icons":[
+	{
+        "src":"logo.png",					
+        "sizes":"160x160",
+        "type":"image/png"
+	},
+	{
+        "src":"logo.png",
+        "sizes":"160x160",
+        "type":"image/png"
+	}
+    ]
+}
